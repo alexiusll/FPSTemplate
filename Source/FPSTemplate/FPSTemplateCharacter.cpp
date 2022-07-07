@@ -1,5 +1,6 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
+// #include "UMG/Public/Blueprint/UserWidget.h"
 #include "FPSTemplateCharacter.h"
 #include "FPSTemplateProjectile.h"
 #include "Animation/AnimInstance.h"
@@ -103,6 +104,9 @@ void AFPSTemplateCharacter::BeginPlay()
 		VR_Gun->SetHiddenInGame(true, true);
 		Mesh1P->SetHiddenInGame(false, true);
 	}
+
+	// ×Ô½¨Á¢UMG
+	// userHud = CreateWidget<UUserWidget>(GetWorld());
 }
 
 //////////////////////////////////////////////////////////////////////////

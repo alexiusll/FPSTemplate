@@ -7,11 +7,13 @@
 #include "MyPlayerController.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class FPSTEMPLATE_API AMyPlayerController : public APlayerController
 {
 	GENERATED_BODY()
-	
+
+public:
+	virtual void BeginPlay() override;
 };
