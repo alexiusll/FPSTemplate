@@ -154,14 +154,21 @@ public:
 		float Energy = 1.0;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Alexiusll)
-		int32 Ammo = 25;
+		int32 Ammo = 5;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Alexiusll)
-		int32 MaxAmmo = 25;
+		int32 MaxAmmo = 5;
+
+	void Jump() override;
+
+	// ≤‚ ‘”√
+	void DebugHealth();
+
+	void ReloadWeapon();
 
 	// …Ë÷√HUD
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Alexiusll)
-		TSubclassOf<UUserWidget> userHud;
+	// UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Alexiusll)
+		// TSubclassOf<UUserWidget> userHud;
 
 	// UFUNCTION(BlueprintNativeEvent, Category = "test")
 	//   void testFunc();

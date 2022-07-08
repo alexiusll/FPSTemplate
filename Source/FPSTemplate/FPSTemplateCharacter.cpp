@@ -118,7 +118,7 @@ void AFPSTemplateCharacter::SetupPlayerInputComponent(class UInputComponent* Pla
 	check(PlayerInputComponent);
 
 	// Bind jump events
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AFPSTemplateCharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
 	// Bind fire event
@@ -129,6 +129,11 @@ void AFPSTemplateCharacter::SetupPlayerInputComponent(class UInputComponent* Pla
 
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &AFPSTemplateCharacter::OnResetVR);
 
+	// ---- UMG DEMO ----
+	// 消减生命的调试
+	PlayerInputComponent->BindAction("DebugHealth", IE_Pressed, this, &AFPSTemplateCharacter::DebugHealth);
+	PlayerInputComponent->BindAction("Reload", IE_Pressed, this, &AFPSTemplateCharacter::ReloadWeapon);
+	
 	// Bind movement events
 	PlayerInputComponent->BindAxis("MoveForward", this, &AFPSTemplateCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AFPSTemplateCharacter::MoveRight);
@@ -144,6 +149,16 @@ void AFPSTemplateCharacter::SetupPlayerInputComponent(class UInputComponent* Pla
 
 void AFPSTemplateCharacter::OnFire()
 {
+
+	// 判断子弹是否为 0
+	if (Ammo <= 0) {
+		return;
+	}
+
+	Ammo--;
+	// 打印
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString::Printf(TEXT("player Ammo: %d"), Ammo));
+	
 	// try and fire a projectile
 	if (ProjectileClass != nullptr)
 	{
@@ -301,4 +316,34 @@ bool AFPSTemplateCharacter::EnableTouchscreenMovement(class UInputComponent* Pla
 	}
 	
 	return false;
+}
+
+void AFPSTemplateCharacter::Jump()
+{
+	// Call the base class  
+	Super::Jump();
+
+	// 扣除 Energy
+	Energy = FMath::Clamp(Energy - 0.25, 0.0, 1.0);
+
+	// 打印信息
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString::Printf(TEXT("player jump: Energy %f"), Energy));
+}
+
+void AFPSTemplateCharacter::DebugHealth()
+{
+	// 扣除 Health
+	Health = FMath::Clamp(Health - 0.25, 0.0, 1.0);
+
+	// 打印信息
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString::Printf(TEXT("player Health: %f"), Health));
+}
+
+void AFPSTemplateCharacter::ReloadWeapon()
+{
+	// 增加子弹
+	Ammo = MaxAmmo;
+
+	// 打印信息
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Magenta, FString::Printf(TEXT("player Ammo: %d"), Ammo));
 }
