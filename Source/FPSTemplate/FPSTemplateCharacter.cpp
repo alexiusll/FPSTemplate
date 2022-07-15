@@ -149,7 +149,7 @@ void AFPSTemplateCharacter::SetupPlayerInputComponent(class UInputComponent* Pla
 
 void AFPSTemplateCharacter::OnFire()
 {
-
+	// 修改
 	// 判断子弹是否为 0
 	if (Ammo <= 0) {
 		return;
