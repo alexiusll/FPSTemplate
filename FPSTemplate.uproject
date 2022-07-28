@@ -16,7 +16,7 @@
 		{
 			"Name": "ModuleTest",
 			"Type": "Runtime",
-			"LoadingPhase": "Default",
+			"LoadingPhase": "PreDefault",
 			"AdditionalDependencies": [
 				"Engine",
 				"UMG"
