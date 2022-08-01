@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "MyActor_public.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AMyActor_public::AMyActor_public()
@@ -16,8 +16,19 @@ void AMyActor_public::BeginPlay()
 {
 	Super::BeginPlay();
 
-	GEngine->AddOnScreenDebugMessage(0, 10.0f, FColor::Blue, TEXT("My Actor"));
+	// GEngine->AddOnScreenDebugMessage(0, 10.0f, FColor::Blue, TEXT("My Actor BeginPlay() new"));
+
+#if WITH_FREETYPE
+	GEngine->AddOnScreenDebugMessage(1, 10.0f, FColor::Blue, text.ToString());
+
+	// FT_Get_Char_Index();
+#endif	// WITH_FREETYPE
 	
+}
+
+void AMyActor_public::preTextDisplay()
+{
+
 }
 
 // Called every frame
@@ -26,4 +37,13 @@ void AMyActor_public::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 }
+
+void AMyActor_public::testFreeType() {
+
+}
+
+void AMyActor_public::DisplayText() {
+	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, text.ToString());
+}
+
 

@@ -4,7 +4,12 @@ public class ModuleTest : ModuleRules
 {
 	public ModuleTest(ReadOnlyTargetRules Target) : base(Target)
 	{
-        PrivateDependencyModuleNames.AddRange(new string[] {"Core", "CoreUObject", "Engine", "UMG" , "Slate"});
+		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+
+		// PrivateDependencyModuleNames.AddRange(new string[] {"Core", "CoreUObject", "Engine"});
+
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "UMG", "SlateCore","Slate", 
+		"ApplicationCore",});
 
 		if (Target.Type != TargetType.Server)
 		{

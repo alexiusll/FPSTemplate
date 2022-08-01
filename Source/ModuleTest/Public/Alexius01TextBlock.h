@@ -19,8 +19,16 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Alexiusll")
 	FText prefix;
 
-	UPROPERTY(EditAnywhere, Category = "Alexiusll")
-	FString freeTypeIsEnable;
+	UPROPERTY(VisibleAnywhere, Category = "Alexiusll")
+	FText finalText;
+
+	//UFUNCTION(BlueprintCallable, Category = "alexiusll")
+	//void fontHelp();
+
+	void preText();
 
 	virtual void SetText(FText InText) override;
+
+protected:
+	virtual TAttribute<FText> GetDisplayText() override;
 };

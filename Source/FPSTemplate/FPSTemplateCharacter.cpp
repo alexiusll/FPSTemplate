@@ -105,6 +105,8 @@ void AFPSTemplateCharacter::BeginPlay()
 		Mesh1P->SetHiddenInGame(false, true);
 	}
 
+	// GEngine->AddOnScreenDebugMessage(0, 10.0f, FColor::Blue, TEXT("AFPSTemplateCharacter::BeginPlay() test"));
+
 	// ×Ô½¨Á¢UMG
 	// userHud = CreateWidget<UUserWidget>(GetWorld());
 }
